@@ -14,10 +14,14 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
 });
 
 function parseLitematic(content) {
+    console.log('Parsing started'); // Log the start of the parsing process
     // Placeholder function to parse the .litematic file and extract the material list
     // This function needs to be implemented
-    console.log('Parsed material list:', []); // Log the parsed material list
-    return [];
+    console.log('File content:', content); // Log the file content
+    const materialList = []; // Placeholder for the extracted material list
+    console.log('Parsed material list:', materialList); // Log the parsed material list
+    console.log('Parsing ended'); // Log the end of the parsing process
+    return materialList;
 }
 
 function displayMaterialList(materialList) {
