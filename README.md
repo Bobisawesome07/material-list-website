@@ -1,2 +1,1 @@
-# material-list-website
-A repository for a website that generates material lists from .litematic files
+This repository is empty. Any task executed on it should be considered a new capability and needs to be created.
