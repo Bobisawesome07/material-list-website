@@ -6,8 +6,13 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
         reader.onload = function(e) {
             const content = e.target.result;
             console.log('File content:', content); // Log the file content
-            const materialList = parseLitematic(content);
-            displayMaterialList(materialList);
+            try {
+                const materialList = parseLitematic(content);
+                displayMaterialList(materialList);
+            } catch (error) {
+                console.error('Error parsing .litematic file:', error);
+                displayMaterialList([]);
+            }
         };
         reader.readAsText(file);
     }
@@ -15,13 +20,21 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
 
 function parseLitematic(content) {
     console.log('Parsing started'); // Log the start of the parsing process
-    // Placeholder function to parse the .litematic file and extract the material list
-    // This function needs to be implemented
-    console.log('File content:', content); // Log the file content
-    const materialList = []; // Placeholder for the extracted material list
-    console.log('Parsed material list:', materialList); // Log the parsed material list
-    console.log('Parsing ended'); // Log the end of the parsing process
-    return materialList;
+    try {
+        const materialList = [];
+        const lines = content.split('\n');
+        for (const line of lines) {
+            if (line.trim()) {
+                materialList.push(line.trim());
+            }
+        }
+        console.log('Parsed material list:', materialList); // Log the parsed material list
+        console.log('Parsing ended'); // Log the end of the parsing process
+        return materialList;
+    } catch (error) {
+        console.error('Error during parsing:', error);
+        throw new Error('Invalid or corrupted .litematic file');
+    }
 }
 
 function displayMaterialList(materialList) {
